@@ -34,28 +34,29 @@ h1 {
 
 .main {
     display: flex;    
-    //flex-direction: column-reverse;
+    justify-content: center;
+
     width: 80%;
     min-height: 400px;
     background: rgba(255, 255, 255, 0.791);
     border-radius: 20px;
     box-shadow: #1f1f1f 3px 5px 2px;
 
-/*     position: fixed;
-    bottom: 20px;
-    z-index: 3;
-    opacity: 0.5;
-    transform: scaleY(0.3);
-    transform-origin: bottom;
-    transition: all 0.3s;
-
-    &:hover {
-        opacity: 1;
-        transform: scaleY(1);
-    } */
+    & .detached-icon {
+        font-size: 1.7em;
+        position: absolute;
+        right: 30px;
+        top: 20px;
+        color: rgb(102, 107, 129);
+        transform: scaleY(-1);
+        &:hover {
+            cursor: pointer;
+        }
+    }
 
     &__elem {
         width: 50%;
+        position: relative;
     }
 
     &__previsu {
@@ -64,8 +65,6 @@ h1 {
         justify-content: center;
         align-items: center;
         height: 100%;
-
-        border-left: 1px rgba(173, 173, 173, 0.499) solid;
 
         i {
             font-size: 7em;
@@ -78,6 +77,33 @@ h1 {
             max-height: 600px;
         }
     }
+}
+
+.main--detached {
+    position: fixed;
+    right: 0;
+    bottom: 10px;
+    z-index: 3;
+    transform: translateX(80%);
+    opacity: 0.7;
+    background: rgba(255, 255, 255, 0.799);
+    border-radius: 20px;
+
+    transition: all 0.3s;
+    min-height: 400px;
+
+    & .detached-icon {
+        right: unset;
+        left: 30px;
+        transform: scaleX(-1) scaleY(1)
+    }
+
+    &:hover {
+        transform: translate(0);
+        opacity: 1;
+    }
+
+    padding: 20px;
 }
 
 .main-paysage {
@@ -94,6 +120,7 @@ h1 {
     img {
        // max-width: 100%;
        object-fit: cover;
+       background: transparent;
     }
 }
 
@@ -265,6 +292,9 @@ input {
 
         input {
             width: 70%;
+        }
+        label {
+            width: 20%;
         }
     }
 }

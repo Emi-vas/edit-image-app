@@ -25,14 +25,19 @@ const App = () => {
   //filter section
   const [filter, setFilter] = useState({blur: 0, mirror: false, sepia: 0, border: 0, negative: false})
 
+  //to change the position of the main bloc
+  const [mainPosition, setMainPosition] = useState(false)
+
+
 
   return (
     <div>
       <h1>Retouche Image</h1>
 
-      <div className='main-cont'>
-          <section className='main'>
-              <div className='main__elem'>
+      <div className='main-cont '>
+          <section className='main '>
+              <div className={mainPosition ? "main__elem main--detached" : "main__elem"}>
+                  <i className=" detached-icon fa-solid fa-arrow-up-right-from-square" onClick={()=>setMainPosition(!mainPosition)}></i>
                   <Buttons mode={mode} setMode={setMode} />
                   {mode == "réglages" && <Settings settings={settings} setSettings={setSettings} />}
                   {mode == "filtres" && <Filter filter={filter} setFilter={setFilter} />}
@@ -40,7 +45,7 @@ const App = () => {
               </div>
 
               <div className='main__elem'>
-                  <Previsu imageSrc={imageSrc} setImageSrc={setImageSrc} setSize={setSize} size={size} />
+                  <Previsu imageSrc={imageSrc}  setImageSrc={setImageSrc} setSize={setSize} size={size} settings={settings}/>
               </div>
           </section>
       </div>

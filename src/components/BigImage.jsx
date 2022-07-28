@@ -2,10 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const BigImage = ({ imageSrc, size, settings, filter }) => {
+const BigImage = ({ imageSrc, size, settings, filter}) => {
 
     const [zoom, setZoom] = useState(100)
-
+    
     const negativeValue = () => {
         if(filter.negative) {
             return 1
@@ -24,8 +24,8 @@ const BigImage = ({ imageSrc, size, settings, filter }) => {
     })
 
     return (
-        <div className='bigImage'>
-            <img 
+        <div className='bigImage' >
+            <img  id='big-image'
                 src={imageSrc} 
                 alt="image upload" 
                 style={{

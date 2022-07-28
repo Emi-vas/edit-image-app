@@ -1,9 +1,25 @@
 import React from 'react';
+import domtoimage from 'dom-to-image';
 
 const previsu = ({ imageSrc, setImageSrc, setSize, size }) => {
 
     const importFile = () => {
        document.getElementById('inputFile').click()
+    }
+
+    const downloadImage = () => {
+        let node = document.getElementById('big-image');
+        let zoomValue = node.style.zoom
+        node.style.zoom = "100%"
+        domtoimage.toPng(node)
+        .then(function (dataUrl) {
+            var link = document.createElement('a');
+            link.download = 'edit-image.png';
+            link.href = dataUrl;
+            link.click();
+
+            node.style.zoom = zoomValue
+        });
     }
 
     const handleFile = (e) => {
@@ -45,7 +61,7 @@ const previsu = ({ imageSrc, setImageSrc, setSize, size }) => {
                 <input type="file" hidden id='inputFile' onChange={(e) => handleFile(e)} />
                 <button className='active' onClick={importFile}>Importer une photo</button>
                 {
-                    imageSrc && <button>Télécharger</button>
+                    imageSrc && <button onClick={downloadImage}>Télécharger</button>
                 }
             </div>
         </div>
