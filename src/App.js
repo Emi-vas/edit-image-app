@@ -22,6 +22,9 @@ const App = () => {
   // to set "settings" of the image
   const [settings, setSettings] = useState({brightness: 100, contrast: 100, saturate: 100, color: 0})
 
+  //filter section
+  const [filter, setFilter] = useState({blur: 0, mirror: false, sepia: 0, border: 0, negative: false})
+
 
   return (
     <div>
@@ -32,7 +35,7 @@ const App = () => {
               <div className='main__elem'>
                   <Buttons mode={mode} setMode={setMode} />
                   {mode == "réglages" && <Settings settings={settings} setSettings={setSettings} />}
-                  {mode == "filtres" && <Filter />}
+                  {mode == "filtres" && <Filter filter={filter} setFilter={setFilter} />}
                   {mode == "taille" && <Size size={size} setSize={setSize} />}
               </div>
 
@@ -43,7 +46,7 @@ const App = () => {
       </div>
 
       {
-        imageSrc && <BigImage imageSrc={imageSrc} size={size} settings={settings} />
+        imageSrc && <BigImage imageSrc={imageSrc} size={size} settings={settings} filter={filter} />
       }
     </div>
   );

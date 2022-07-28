@@ -2,9 +2,17 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const BigImage = ({ imageSrc, size, settings }) => {
+const BigImage = ({ imageSrc, size, settings, filter }) => {
 
     const [zoom, setZoom] = useState(100)
+
+    const negativeValue = () => {
+        if(filter.negative) {
+            return 1
+        } else {
+            return 0
+        }
+    }
 
     useEffect(() => {
         //zoom if size of the pic il largeur than the window
@@ -26,8 +34,9 @@ const BigImage = ({ imageSrc, size, settings }) => {
                     objectPosition: `${size.posX}% ${size.posY}%`,
                     zoom: `${zoom}%`,
 
-                    filter: `hue-rotate(${settings.color}deg) brightness(${settings.brightness}%) saturate(${settings.saturate}%) contrast(${settings.contrast}%)`
-                    
+                    filter: `blur(${filter.blur}px) invert(${negativeValue()}) sepia(${filter.sepia}%) hue-rotate(${settings.color}deg) brightness(${settings.brightness}%) saturate(${settings.saturate}%) contrast(${settings.contrast}%)`,
+                    transform: filter.mirror ? "scaleX(-1)" : "scaleX(1)", //-1  + arondir + sepia + blur 
+                    borderRadius: `${filter.border}%`
                 }}/>
         </div>
     );
