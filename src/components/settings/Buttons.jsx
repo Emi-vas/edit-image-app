@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Buttons = ({ mode, setMode }) => {
-    const buttons = ["réglage", "taille", "filtre"]
+    const buttons = ["réglages", "taille", "filtres"]
 
     return (
         <div className='buttons'>
@@ -10,6 +10,7 @@ const Buttons = ({ mode, setMode }) => {
                     <button 
                         className={mode == button ? "active" : ""}
                         onClick={() => setMode(button)}
+                        key={button}
                         >{button}</button>
                 ))
             }
