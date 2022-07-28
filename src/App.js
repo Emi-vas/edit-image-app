@@ -16,7 +16,11 @@ const App = () => {
   //image import by user
   const [imageSrc, setImageSrc] = useState("")
 
+  //to set the size and the position of the image
   const [size, setSize] = useState({width : 0, height : 0, posX: 50, posY: 50})
+
+  // to set "settings" of the image
+  const [settings, setSettings] = useState({brightness: 100, contrast: 100, saturate: 100, color: 0})
 
 
   return (
@@ -27,7 +31,7 @@ const App = () => {
           <section className='main'>
               <div className='main__elem'>
                   <Buttons mode={mode} setMode={setMode} />
-                  {mode == "réglages" && <Settings />}
+                  {mode == "réglages" && <Settings settings={settings} setSettings={setSettings} />}
                   {mode == "filtres" && <Filter />}
                   {mode == "taille" && <Size size={size} setSize={setSize} />}
               </div>
@@ -39,7 +43,7 @@ const App = () => {
       </div>
 
       {
-        imageSrc && <BigImage imageSrc={imageSrc} size={size} />
+        imageSrc && <BigImage imageSrc={imageSrc} size={size} settings={settings} />
       }
     </div>
   );

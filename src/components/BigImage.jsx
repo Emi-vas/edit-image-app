@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-const BigImage = ({ imageSrc, size }) => {
+const BigImage = ({ imageSrc, size, settings }) => {
 
     const [zoom, setZoom] = useState(100)
 
@@ -24,7 +24,10 @@ const BigImage = ({ imageSrc, size }) => {
                     width : size.width,
                     height: size.height,
                     objectPosition: `${size.posX}% ${size.posY}%`,
-                    zoom: `${zoom}%`
+                    zoom: `${zoom}%`,
+
+                    filter: `hue-rotate(${settings.color}deg) brightness(${settings.brightness}%) saturate(${settings.saturate}%) contrast(${settings.contrast}%)`
+                    
                 }}/>
         </div>
     );
