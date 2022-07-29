@@ -11,6 +11,7 @@ const previsu = ({ imageSrc, setImageSrc, setSize, size }) => {
         let node = document.getElementById('big-image');
         let zoomValue = node.style.zoom
         node.style.zoom = "100%"
+        
         domtoimage.toPng(node)
         .then(function (dataUrl) {
             var link = document.createElement('a');
